@@ -67,7 +67,7 @@ trait HasActions
     {
         $action = $this->getMountedTreeAction();
 
-        if (! $action) {
+        if (!$action) {
             return null;
         }
 
@@ -130,7 +130,7 @@ trait HasActions
 
         $action = $this->getMountedTreeAction();
 
-        if (! $action) {
+        if (!$action) {
             $this->unmountTreeAction();
 
             return null;
@@ -168,7 +168,7 @@ trait HasActions
             return null;
         }
 
-        if (! $this->mountedTreeActionShouldOpenModal()) {
+        if (!$this->mountedTreeActionShouldOpenModal()) {
             return $this->callMountedTreeAction();
         }
 
@@ -183,9 +183,9 @@ trait HasActions
     {
         $action = $this->getMountedTreeAction();
 
-        if ($action->modalHidden()()) {
-            return false;
-        }
+        // if ($action->modalHidden()()) {
+        //     return false;
+        // }
 
         return $action->getModalDescription() ||
             $action->getModalContent() ||
@@ -201,7 +201,7 @@ trait HasActions
 
     public function getMountedTreeAction(): ?Action
     {
-        if (! count($this->mountedTreeAction ?? [])) {
+        if (!count($this->mountedTreeAction ?? [])) {
             return null;
         }
 
@@ -239,7 +239,7 @@ trait HasActions
     {
         $action = $this->getMountedTreeAction();
 
-        if (! ($shouldCancelParentActions && $action)) {
+        if (!($shouldCancelParentActions && $action)) {
             $this->popMountedTreeAction();
         } elseif ($action->shouldCancelAllParentActions()) {
             $this->resetMountedTreeActionProperties();
@@ -258,7 +258,7 @@ trait HasActions
             }
         }
 
-        if (! count($this->mountedTreeAction)) {
+        if (!count($this->mountedTreeAction)) {
             $this->closeTreeActionModal();
 
             $action?->record(null);
@@ -286,11 +286,11 @@ trait HasActions
     {
         $action = $this->getMountedTreeAction();
 
-        if (! $action) {
+        if (!$action) {
             return null;
         }
 
-        if ((! $this->isCachingForms) && $this->hasCachedForm('mountedTreeActionForm')) {
+        if ((!$this->isCachingForms) && $this->hasCachedForm('mountedTreeActionForm')) {
             return $this->getCachedForm('mountedTreeActionForm');
         }
 
@@ -349,13 +349,13 @@ trait HasActions
         }
 
         foreach ($actions as $action) {
-            if (! $action instanceof ActionGroup) {
+            if (!$action instanceof ActionGroup) {
                 continue;
             }
 
             $groupedAction = $action->getActions()[$name] ?? null;
 
-            if (! $groupedAction) {
+            if (!$groupedAction) {
                 continue;
             }
 
